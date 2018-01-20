@@ -12,7 +12,7 @@ func TestParseListings(t *testing.T) {
 	t.Run("Cinema ID", func(t *testing.T) { testParseListingsCinemaID(t, &listings) })
 	t.Run("Number of films", func(t *testing.T) { testParseListingsNumFilms(t, &listings) })
 	t.Run("Film title", func(t *testing.T) { testParseListingsFilmTitle(t, &listings) })
-	t.Run("Show time", func(t *testing.T) { testParseListingsShowTime(t, &listings) })
+	t.Run("Show time", func(t *testing.T) { testParseListingsShowRawTime(t, &listings) })
 	t.Run("Show URL", func(t *testing.T) { testParseListingsShowURL(t, &listings) })
 }
 
@@ -53,11 +53,11 @@ func testParseListingsNumFilms(t *testing.T, listings *Listings) {
 	}
 }
 
-func testParseListingsShowTime(t *testing.T, listings *Listings) {
+func testParseListingsShowRawTime(t *testing.T, listings *Listings) {
 	cinema := listings.Cinemas[0]
 	film := cinema.Films[0]
 	show := film.Shows[0]
-	if show.Time != "2018-01-18T11:15:00" {
+	if show.RawTime != "2018-01-18T11:15:00" {
 		t.Fatal("Show time was not correct")
 	}
 }

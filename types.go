@@ -1,6 +1,11 @@
 package gocineworld
 
-import "strings"
+import (
+	"strings"
+	"time"
+)
+
+const showTimeFormat = "2006-01-02T15:04:05"
 
 type Cinema struct {
 	RawName string `xml:"name,attr"`
@@ -22,6 +27,10 @@ type Listings struct {
 }
 
 type Show struct {
-	Time string `xml:"time,attr"`
-	URL  string `xml:"url,attr"`
+	RawTime string `xml:"time,attr"`
+	URL     string `xml:"url,attr"`
+}
+
+func (s *Show) Time() (time.Time, error) {
+	return time.Parse(showTimeFormat, s.RawTime)
 }
