@@ -8,7 +8,7 @@ import (
 func TestParseListings(t *testing.T) {
 	listings := parseTestListingsXml(t)
 	t.Run("Number of cinemas", func(t *testing.T) { testParseListingsNumCinemas(t, &listings) })
-	t.Run("Cinema name", func(t *testing.T) { testParseListingsCinemaName(t, &listings) })
+	t.Run("Cinema name", func(t *testing.T) { testParseListingsCinemaRawName(t, &listings) })
 	t.Run("Cinema ID", func(t *testing.T) { testParseListingsCinemaID(t, &listings) })
 	t.Run("Number of films", func(t *testing.T) { testParseListingsNumFilms(t, &listings) })
 	t.Run("Film title", func(t *testing.T) { testParseListingsFilmTitle(t, &listings) })
@@ -23,9 +23,9 @@ func testParseListingsCinemaID(t *testing.T, listings *Listings) {
 	}
 }
 
-func testParseListingsCinemaName(t *testing.T, listings *Listings) {
+func testParseListingsCinemaRawName(t *testing.T, listings *Listings) {
 	cinema := listings.Cinemas[0]
-	if cinema.Name != "Cineworld Aberdeen - Queens Links" {
+	if cinema.RawName != "Cineworld Aberdeen - Queens Links" {
 		t.Fatal("Cinema name was not correct")
 	}
 }

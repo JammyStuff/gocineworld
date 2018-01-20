@@ -1,9 +1,15 @@
 package gocineworld
 
+import "strings"
+
 type Cinema struct {
-	Name  string `xml:"name,attr"`
-	ID    int    `xml:"id,attr"`
-	Films []Film `xml:"listing>film"`
+	RawName string `xml:"name,attr"`
+	ID      int    `xml:"id,attr"`
+	Films   []Film `xml:"listing>film"`
+}
+
+func (c *Cinema) Name() string {
+	return strings.TrimPrefix(c.RawName, "Cineworld ")
 }
 
 type Film struct {
